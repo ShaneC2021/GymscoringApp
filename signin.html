@@ -29,32 +29,68 @@
           <div class="collapse navbar-collapse " id="toggleMobileMenu">
             <ul class="navbar-nav ms-auto text-center " >
               <li><a class="nav-link text-white " href="index.html">Home</a></li>
-              <li><a class="nav-link text-white" href="signin.html">Sign In</a></li>
-              <li><a class="nav-link text-white" href="#">Scoring</a></li>
-              <li><a class="nav-link text-white" href="#">About</a></li>
-              <li><a class="nav-link text-white" href="#">Contacts</a></li>
             </ul>
           </div>
         </div>
+    </nav>
+      
+    <div class="container-fluid p-0">
+      <div class ="panorama main d-flex justify-content-center align-items-center text-center">
+        <form class ="bg-light roundborder form form-pad " id="login" action="action_page.php" method="post">
+          <h1 class="form__title">LOGIN</h1>
+          <div class="form__message form__message--error"></div>
+          <div class="form__input-group">
+            <input type="text" class ="form__input" autofocus placeholder="UserName/Email" required>
+            <div class="form__input-error-message">This is an error message</div>
+          </div>
+          <div class= "form__input-group">
+            <input type="password" class="form__input" autofocus placeholder="Password" required>
+            <div class="form__input-error-message"></div>
+          </div>
+          <button class="form__button" type="submit">Continue</button>
+          
+          <p class="form__text">
+            <a href="#" class="form__link">Forgot your password ?</a>
+          </p>
 
-      </nav>
-      <div class="container-fluid p-0 ">
-        <div class ="panorama main ">
-            <div class="container d-flex align-items-center justify-content-center">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center" >
-                <form>
-                  <ul>
-                    <li><label for="username"><input id="username" placeholder="Username" type="text" required></label></li>
-                    <li><label for="password"><input id="password" placeholder="Password" type="text" required></label></li>
-                    <li><button type="submit" class="btn btn-primary btn-sm">Submit</button></li>
-                  </ul>
-                </form>
-                </div>
-              </div>
+          
+          <p class="form__text">
+            <a id="linkCreateAccount" class="form__link">Don't have an account ? Create an account</a>
+          </p>
+        </form>
+
+
+        <form class ="bg-light roundborder form form-pad form--hidden" id="createAccount" action="action_page.php" method="post">
+            <h1 class="form__title">Create Account</h1>
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+              <input type="text" class ="form__input" autofocus placeholder="Username" required>
+              <div class="form__input-error-message">This is an error message</div>
             </div>
-        </div>
+
+            <div class="form__input-group">
+                <input type="email" class ="form__input" autofocus placeholder="Email Address" required>
+                <div class="form__input-error-message">This is an error message</div>
+              </div>
+             
+
+
+            <div class= "form__input-group">
+              <input type="password" class="form__input" autofocus placeholder="Password" required>
+              <div class="form__input-error-message">Confirm Password</div>
+            </div>
+            <button class="form__button" type="submit">Continue</button>
+            
+        
+            
+            <p class="form__text">
+              <a id="linkLogin" class="form__link">Already have an account ? Sign In</a>
+            </p>
+          </form>
+  
       </div>
+    </div>
+      
       
     </body>
 </html>

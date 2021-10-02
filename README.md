@@ -1,0 +1,1 @@
+Gymnastics scoring app for judges. App accepts judges input, calculates an athlete's score and ranks them accordingly for that event. 
