@@ -101,6 +101,47 @@ function addD() {  //adds Dscore input box to screen
   D.appendChild(document.createElement("br"));
 }
 
+function addBonus() {  
+    let bonus = document.getElementById("Bonus");
+    let input = document.createElement("input");
+    
+    input.type = "text";
+    input.name = "";
+    input.placeholder = "Bonus";
+    input.size = "3";
+  
+    bonus.appendChild(input);
+    bonus.appendChild(document.createElement("br"));
+  }
+
+  function addPenalty() {  
+    let penalty = document.getElementById("Penalty");
+    let input = document.createElement("input");
+    
+    input.type = "text";
+    input.name = "";
+    input.placeholder = "Penalty";
+    input.size = "3";
+  
+    penalty.appendChild(input);
+    penalty.appendChild(document.createElement("br"));
+  }
+  
+  function addFinalScore() {  //adds Dscore input box to screen
+    let finalScore = document.getElementById("FinalScore");
+    let input = document.createElement("input");
+    
+    input.type = "text";
+    input.name = "";
+    input.placeholder = "FinalScore";
+    input.size = "5";
+  
+    finalScore.appendChild(input);
+    finalScore.appendChild(document.createElement("br"));
+  }
+  
+  
+  
 function addAthletes() {    //accepts user input and displays scoring inputs based on #of athletes
 
   let number = document.getElementById("numberOfAthletes").value; //number of inputs to create
@@ -122,5 +163,8 @@ function addAthletes() {    //accepts user input and displays scoring inputs bas
     addE4();
     addE5();
     addE6();
+    addBonus();
+    addPenalty();
+    addFinalScore();
 }
 }
