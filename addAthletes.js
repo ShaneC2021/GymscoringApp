@@ -26,8 +26,6 @@ function addE1() { // adds E1 input box to display
   // better to use an outer div/id for each athlete and find the related items
   // ex. document.querySelectorAll('#athlete1 input')
   input.id = "E1"
-
-  document.querySelector()
   
   E1.appendChild(input);
   E1.appendChild(document.createElement("br"));
