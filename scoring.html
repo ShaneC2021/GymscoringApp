@@ -19,7 +19,7 @@
   </head>
   <body>
     <script src="addAthletes.js"></script>
-
+<!---
     <div class="container-fluid p-0">
       <div>
         <form class="bg-primary">
@@ -27,34 +27,57 @@
           <input id="numberOfAthletes" type="number" />
           <button type="button" onclick="addAthletes()">Add</button>
         </form>
-      </div>
-      <button type="button" onclick="fscore()">submit</button>
-    </div>
+      </div> -->
+    
 
     <div class="container-fluid bg-dark p-0">
-      <form>
-        <div class="row m-0">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bg-secondary d-flex flex-row justify-content-evenly">
+      <form id="myForm">
+        <button type="button" onclick="addCompetitors()">submit</button>
+      
+          <div>
             <!-- 
               Definitely would be good to have some column headers.
               A table component would be good here (or an actual table - since it is tabular data) 
             -->
-            <div id="Name"></div>
-            <div id="Dscore"></div>
-            <div id="Ex1"></div>
-            <div id="Ex2"></div>
-            <div id="Ex3"></div>
-            <div id="Ex4"></div>
-            <div id="Ex5"></div>
-            <div id="Ex6"></div>
-            <div id="Bonus"></div>
-            <div id="Penalty"></div>
-            <div id="FinalScore"></div>
-            <div id="Rank"></div>
+
+            <input id="Name" placeholder="name" type="text" size="3">
+            <input id="Dscore" placeholder="Dscore" size="1">
+            <input id="Ex1" placeholder="E1" size="1">
+            <input id="Ex2" placeholder="E2" size="1">
+            <input id="Ex3" placeholder="E3" size="1">
+            <input id="Ex4" placeholder="E4" size="1">
+            <input id="Ex5" placeholder="E5" size="1">
+            <input id="Ex6" placeholder="E6" size="1">
+            <input id="Bonus" placeholder="Bonus" size="1">
+            <input id="Penalty" placeholder="Penalty" size="1">
+            <input id="FinalScore" placeholder="FinalScore" size="1">
+            <input id="Rank" placeholder="Rank" size="1">
           </div>
-        </div>
+        
       </form>
     </div>
-    <script src="fscore.js"></script>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+    <div id="demo3"></div>
+    <div id="demo4"></div>
+  
+
+    <table border="5">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dscore</th>
+          <th>Bonus</th>
+          <th>Penalty</th>
+          <th>Score</th>
+          <th>Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+    <script src="addcompetitor.js"></script>
   </body>
 </html>
