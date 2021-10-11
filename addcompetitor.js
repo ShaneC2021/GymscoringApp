@@ -37,8 +37,7 @@ let competitor = {
 
 competitors.push(competitor); // adds competitor object to the array
 
-// for debugging console.log(JSON.stringify(competitor));
-//document.getElementById("FinalScore").value = competitors[0].FinalScore();
+
 
 document.getElementById("myForm").reset();
 
@@ -46,7 +45,7 @@ document.getElementById("myForm").reset();
 
 
 addtableRow(competitors, "Name");// adds a table row to display an athlete's scores and rank accepts competitor object as argument
-                                // currently it just adds the name
+                                 // currently it just adds the name
 }
 
 
