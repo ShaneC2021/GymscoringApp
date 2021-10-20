@@ -7,77 +7,102 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="styleapp.css" />
   </head>
   <body>
     <script src="addAthletes.js"></script>
-<!---
-    <div class="container-fluid p-0">
-      <div>
-        <form class="bg-primary">
-          <p>#of competitiors</p>
-          <input id="numberOfAthletes" type="number" />
-          <button type="button" onclick="addAthletes()">Add</button>
-        </form>
-      </div> -->
-    
+ 
 
-    <div class="container-fluid bg-dark p-0">
-      <form id="myForm">
-        <button type="button" onclick="addCompetitors()">submit</button>
-      
-          <div>
-            <!-- 
-              Definitely would be good to have some column headers.
-              A table component would be good here (or an actual table - since it is tabular data) 
-            -->
-
-            <input id="Name" placeholder="name" type="text" size="3">
-            <input id="Dscore" placeholder="Dscore" size="1">
-            <input id="Ex1" placeholder="E1" size="1">
-            <input id="Ex2" placeholder="E2" size="1">
-            <input id="Ex3" placeholder="E3" size="1">
-            <input id="Ex4" placeholder="E4" size="1">
-            <input id="Ex5" placeholder="E5" size="1">
-            <input id="Ex6" placeholder="E6" size="1">
-            <input id="Bonus" placeholder="Bonus" size="1">
-            <input id="Penalty" placeholder="Penalty" size="1">
-            <input id="FinalScore" placeholder="FinalScore" size="1">
-            <input id="Rank" placeholder="Rank" size="1">
+  <div class="container-fluid bg-secondary m-0 p-0">
+    <div><h1>Scoring</h1></div>
+    <div class="row bg-warning m-0">
+      <div class="bg-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
+        <form id="myForm" >
+          <div class=" d-flex bg-primary">
+            <input type="text" class="text-center" id="Name" placeholder="name" size="25" type="text" name="fname">
           </div>
-        
-      </form>
-    </div>
-    <div id="demo1"></div>
-    <div id="demo2"></div>
-    <div id="demo3"></div>
-    <div id="demo4"></div>
-  
+          <div class="layout d-flex justify-content-around">
+            <div class="d-flex flex-column justify-content-around">
+              <div>
+                <input type="text" class="" id="Ex1" size="3" placeholder="E1">
+              </div>  
+              <div>
+                <input type="text" class="" id="Ex2" size="3" placeholder="E2">
+              </div>
+              <div>  
+                <input type="text" class="" id="Ex3" size="3" placeholder="E3">
+              </div>    
+            </div>      
+          
 
-    <table border="5">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Dscore</th>
-          <th>Bonus</th>
-          <th>Penalty</th>
-          <th>Score</th>
-          <th>Rank</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-        </tr>
-      </tbody>
-    </table>
+            <div class=" d-flex flex-column justify-content-around">
+              <div>
+                <input type="text" class="" id="Ex4" size="3" placeholder="E4">
+              </div>
+              <div>  
+                <input type="text" class=""id="Ex5" size="3" placeholder="E5">
+              </div>
+              <div>
+                <input type=" text" class= ""id="Ex6" size="3" placeholder="E6">
+              </div>
+            </div>  
+            
+            <div class="d-flex flex-column justify-content-around">
+              <div>
+                <input type="text" class="" id="Dscore" size="3" placeholder="Dscore" size="1">
+              </div>
+            
+              <div>    
+                <input type="text" class="" id="Penalty" size="3" placeholder="Penalty" size="1">  
+              </div> 
+              
+              <div>    
+                <input type="text" class="" id="Bonus" size="3" placeholder="Bonus" size="1">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+        
+      <div class=" bg -info d-flex justify-content-center align-items-center bg-info col-lg-2 col-md-2 col-sm-12 col-xs-12 p-0">
+        <div>
+          <button type="submit" onclick="addCompetitors()" class="btn btn-secondary">submit</button>
+        </div>
+          
+      </div>
+    
+    
+      
+  
+      <div id="table-container" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0 m-0">
+        <table class="content-table" border="1" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Dscore</th>
+              <th>Bonus</th>
+              <th>Penalty</th>
+              <th>Score</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>  
     <script src="addcompetitor.js"></script>
   </body>
 </html>
