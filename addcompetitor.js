@@ -1,6 +1,89 @@
 
 let competitors = [];
-let error = [];
+
+
+  
+
+function validate(){
+  
+let errorCount = 0;
+if(document.getElementById("Name").value ==="") {                   // if form field is empty  form field border is highlighted red
+  document.getElementById("Name").style.borderColor = "red";       
+  errorCount += 1;                                                 // errorCounter is incremented
+}
+else 
+  document.getElementById("Name").style.borderColor = "";          
+
+if(document.getElementById("Dscore").value ==="") {
+  document.getElementById("Dscore").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+  document.getElementById("Dscore").style.borderColor = "";
+
+if(document.getElementById("Bonus").value === "") {
+  document.getElementById("Bonus").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+  document.getElementById("Bonus").style.borderColor = "";
+
+if(document.getElementById("Penalty").value === "") {
+  document.getElementById("Penalty").style.borderColor = "red";
+  errorCount += 1;
+
+}
+else 
+  document.getElementById("Penalty").style.borderColor = "";
+     
+if(document.getElementById("Ex1").value === "") {
+  document.getElementById("Ex1").style.borderColor = "red";
+  errorCount += 1;
+
+}
+else 
+  document.getElementById("Ex1").style.borderColor = "";
+       
+if(document.getElementById("Ex2").value === "") {
+  document.getElementById("Ex2").style.borderColor = "red";
+}
+else 
+ document.getElementById("Ex2").style.borderColor = "";
+
+if(document.getElementById("Ex3").value === "") {
+  document.getElementById("Ex3").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+ document.getElementById("Ex3").style.borderColor = "";
+
+if(document.getElementById("Ex4").value ==="") {
+  document.getElementById("Ex4").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+  document.getElementById("Ex4").style.borderColor = "";
+if(document.getElementById("Ex5").value === "") {
+  document.getElementById("Ex5").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+  document.getElementById("Ex5").style.borderColor = "";
+               
+if(document.getElementById("Ex6").value === "") {
+  document.getElementById("Ex6").style.borderColor = "red";
+  errorCount += 1;
+}
+else 
+  document.getElementById("Ex6").style.borderColor = "";
+    if(errorCount === 0) {                                 // if fields ar filled input is submitted and athlete score tabulated 
+    addCompetitors();
+  }                                        
+}
+
+
+  
+
 
 function addCompetitors() {   // function adds competitor object to array
 
@@ -15,11 +98,7 @@ function addCompetitors() {   // function adds competitor object to array
   //  let penalty= document.getElementById("Penalty").value; 
   // let name = document.getElementById("Name").value;
   
-  validate();           // returns 0 if ny of the form fields are empty
 
-  if(validate() === 0) {    // if validation fails user is prompted to fill in empty fields , form is not submitted
-   addCompetitors();
-  }
 
   let competitor = {
   name: document.getElementById("Name").value,
@@ -78,81 +157,5 @@ function addTableRow(obj) {
   cel3.innerHTML = bonus;
   cel4.innerHTML = penalty;
   cel5.innerHTML = fscore;
+
 }
-
-function validate() {
-  let errorCount = 0;
-  if(document.getElementById("Name").value ==="") {                   // if form field is empty  form field border is highlighted red
-    document.getElementById("Name").style.borderColor = "red";       
-    errorCount += 1;                                                 // errorCounter is incremented
-  }
-  else 
-    document.getElementById("Name").style.borderColor = "";          
-  
-  if(document.getElementById("Dscore").value ==="") {
-    document.getElementById("Dscore").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-    document.getElementById("Dscore").style.borderColor = "";
-  
-  if(document.getElementById("Bonus").value === "") {
-    document.getElementById("Bonus").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-    document.getElementById("Bonus").style.borderColor = "";
-  
-  if(document.getElementById("Penalty").value === "") {
-    document.getElementById("Penalty").style.borderColor = "red";
-    errorCount += 1;
-  
-  }
-  else 
-    document.getElementById("Penalty").style.borderColor = "";
-       
-  if(document.getElementById("Ex1").value === "") {
-    document.getElementById("Ex1").style.borderColor = "red";
-    errorCount += 1;
-  
-  }
-  else 
-    document.getElementById("Ex1").style.borderColor = "";
-         
-  if(document.getElementById("Ex2").value === "") {
-    document.getElementById("Ex2").style.borderColor = "red";
-  }
-  else 
-   document.getElementById("Ex2").style.borderColor = "";
-
-  if(document.getElementById("Ex3").value === "") {
-    document.getElementById("Ex3").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-   document.getElementById("Ex3").style.borderColor = "";
-  
-  if(document.getElementById("Ex4").value ==="") {
-    document.getElementById("Ex4").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-    document.getElementById("Ex4").style.borderColor = "";
-  if(document.getElementById("Ex5").value === "") {
-    document.getElementById("Ex5").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-    document.getElementById("Ex5").style.borderColor = "";
-                 
-  if(document.getElementById("Ex6").value === "") {
-    document.getElementById("Ex6").style.borderColor = "red";
-    errorCount += 1;
-  }
-  else 
-    document.getElementById("Ex6").style.borderColor = "";
-    
-  if(errorCount !== 0)                                           // if there is an error in any field function returns 0;
-    return 0;         
-}
-
