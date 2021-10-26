@@ -5,7 +5,7 @@ function validate() {
   let errorCount = 0;
   if(document.getElementById("Name").value ==="") {                   // if form field is empty  form field border is highlighted red
   document.getElementById("Name").style.borderColor = "red";       
-  errorCount += 1;                                                 // errorCounter is incremented
+  errorCount += 1;                                                   // errorCounter is incremented
 }
   else 
     document.getElementById("Name").style.borderColor = "";          
@@ -71,7 +71,8 @@ function validate() {
 }
   else 
     document.getElementById("Ex6").style.borderColor = "";
-  if(errorCount === 0) {                                 // if fields ar filled input is submitted and athlete score tabulated 
+  
+    if(errorCount === 0) {                                 // if fields ar filled input is submitted and athlete score tabulated 
     addCompetitors();
   }                                        
 }
@@ -79,72 +80,58 @@ function validate() {
 
 function addCompetitors() {   // function adds competitor object to array
 
-  // let dscore = document.getElementById("Dscore").value;
-  // let e1 = document.getElementById("Ex1").value;
-  // let e2 = document.getElementById("Ex2").value;
-  // let e3 = document.getElementById("Ex3").value;
-  // let e4 = document.getElementById("Ex4").value;
-  // let e5 = document.getElementById("Ex5").value;
-  //  let e6 = document.getElementById("Ex6").value;
-  //  let bonus = document.getElementById("Bonus").value;
-  //  let penalty= document.getElementById("Penalty").value; 
-  // let name = document.getElementById("Name").value;
   
-    let competitor = {
-    name: document.getElementById("Name").value,
-    dscore: document.getElementById("Dscore").value,
-    e1: document.getElementById("Ex1").value,
-    e2: document.getElementById("Ex2").value,
-    e3: document.getElementById("Ex3").value,
-    e4: document.getElementById("Ex4").value,
-    e5: document.getElementById("Ex5").value,
-    e6: document.getElementById("Ex6").value,
-    bonus: document.getElementById("Bonus").value,
-    penalty: document.getElementById("Penalty").value, 
+  let competitor = {
+  name: document.getElementById("Name").value,
+  dscore: document.getElementById("Dscore").value,
+  e1: document.getElementById("Ex1").value,
+  e2: document.getElementById("Ex2").value,
+  e3: document.getElementById("Ex3").value,
+  e4: document.getElementById("Ex4").value,
+  e5: document.getElementById("Ex5").value,
+  e6: document.getElementById("Ex6").value,
+  bonus: document.getElementById("Bonus").value,
+  penalty: document.getElementById("Penalty").value, 
  
-    finalScore: function() {                    // method to return an athlete's final score
-      let difficulty = parseFloat(this.dscore);
-      let ex1 = parseFloat(this.e1);
-      let ex2 = parseFloat(this.e2);
-      let ex3 = parseFloat(this.e3);
-      let ex4 = parseFloat(this.e4);
-      let ex5 = parseFloat(this.e5);
-      let ex6 = parseFloat(this.e6);
+  finalScore: function() {                    // method to return an athlete's final score
+    let difficulty = parseFloat(this.dscore);
+    let ex1 = parseFloat(this.e1);
+    let ex2 = parseFloat(this.e2);
+    let ex3 = parseFloat(this.e3);
+    let ex4 = parseFloat(this.e4);
+    let ex5 = parseFloat(this.e5);
+    let ex6 = parseFloat(this.e6);
   
-      let bonusScore = parseFloat(this.bonus);
-      let penaltyScore = parseFloat(this.penalty);
-      let deductions = ex1 + ex2 + ex3 + ex4 + ex5 + ex6;
-      let averageDeductions = deductions / 6;
-      let fscore =  difficulty + (10 - averageDeductions) + bonusScore - penaltyScore;
-      return fscore.toFixed(3);
-}
+    let bonusScore = parseFloat(this.bonus);
+    let penaltyScore = parseFloat(this.penalty);
+    let deductions = ex1 + ex2 + ex3 + ex4 + ex5 + ex6;
+    let averageDeductions = deductions / 6;
+    let fscore =  difficulty + (10 - averageDeductions) + bonusScore - penaltyScore;
+    return fscore.toFixed(3);
+  }
 };
-
-  competitors.push(competitor);
-  document.getElementById("myForm").reset();
-  addTableRow(competitor);
-
-}
-
-function addTableRow(obj) {              
-  let i = competitors.length;             //keeps track of number of competitors
-  let name = obj.name;                    //current competitor gets printed to the table
-  let dscore = obj.dscore;
-  let fscore = obj.finalScore();
-  let bonus = obj.bonus;
-  let penalty = obj.penalty;
   
-  let table = document.getElementsByTagName("table")[0];
-  let newRow = table.insertRow(1);
-  let cel1 = newRow.insertCell(0);
-  let cel2 = newRow.insertCell(1);  
-  let cel3 = newRow.insertCell(2);
-  let cel4 = newRow.insertCell(3);
-  let cel5 = newRow.insertCell(4);
-   
-  cel1.innerHTML = name;
-  cel2.innerHTML = dscore;
-  cel3.innerHTML = bonus;
-  cel4.innerHTML = penalty;
-  cel5.innerHTML = fscore;
+competitors.push(competitor);                                 // competitor object is added to array
+document.getElementById("myForm").reset();                    // form is reset 
+competitors.sort((a,b) => b.finalScore() - a.finalScore());   // array is sorted in descnding order
+loadTableData(competitors);                                   // array contents displayed in table
 }
+
+
+function loadTableData(athletes) {
+  let tableBody = document.getElementById("tableData");       
+  let dataHtml = "";
+
+  for (let athlete of athletes) {  // not particularly fond of the line below I know there is probably a more efficient way to do this rather than have it hard coded in but atm this method makes sense in my head
+   dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.dscore}</td><td>${athlete.bonus}</td><td>${athlete.penalty}</td><td>${athlete.finalScore()}</td></tr>`;
+  }
+   tableBody.innerHTML = dataHtml;
+  }
+ 
+function reset() {                                
+  let tableBody = document .getElementById("tableData");
+  let dataHtml = "";                      
+  competitors.length = 0;                                   // empties array
+  tableBody.innerHTML = dataHtml;                           // clears table contents
+}
+  
