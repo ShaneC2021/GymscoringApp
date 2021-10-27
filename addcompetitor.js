@@ -5,11 +5,9 @@ function validate() {
   errorCount = 0;                                     // resets errorCount when validate function is called
   let arrayOfInputIds = ["Name","Ex1","Ex2","Ex3","Ex4","Ex5","Ex6","Dscore","Bonus","Penalty"]
   
-  
   arrayOfInputIds.forEach(errorCheck);  
   if(errorCount === 0)                                // if fields are filled input is submitted and athlete score tabulated 
   addCompetitors();
-                                          
 }
 
 function addCompetitors() {   // function adds competitor object to array
@@ -56,25 +54,34 @@ function loadTableData(athletes) {
   let dataHtml = "";
 
   for (let athlete of athletes) {  // not particularly fond of the line below I know there is 
-                                   // probably a more efficient way to do this rather than have it hard coded in but atm this method makes sense in my head
+                                  // probably a more efficient way to do this rather than have it hard coded in but atm this method makes sense
+                                  // in my head at
    dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.dscore}</td><td>${athlete.bonus}</td>
-                <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td></tr>`;
+    <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td></tr>`;
   }
    tableBody.innerHTML = dataHtml;
   }
  
-function reset() {                                
-  let tableBody = document .getElementById("tableData");
-  let dataHtml = "";                      
-  competitors.length = 0;                                   // empties array
-  tableBody.innerHTML = dataHtml;                           // clears table contents
+function reset() {                                         // clears table and form resets form fields to neutral state
+  let form = document.getElementById("myForm");                             
+  let tableBody = document.getElementById("tableData");                    
+  let input = document.getElementsByTagName("input");
+  
+  competitors.length = 0;                                  // empties array
+  tableBody.innerHTML = "";                                // clears table contents
+  
+  
+  for ( let i = 0; i < input.length; i++) {                // resets input border color to neutral state
+    input[i].style.borderColor = "";
+  }
+  form.reset();    
 }
   
-function errorCheck(string) {                                     // checks for empty form fields 
-  if(document.getElementById(string).value === "") {
+function errorCheck(string) {                                     
+  if(document.getElementById(string).value === "") {             // if form field is empty border changes to red and error counter is incremented
     document.getElementById(string).style.borderColor = "red";
     errorCount += 1;
-}
+  }
   else 
   document.getElementById(string).style.borderColor = "";                            
 }
