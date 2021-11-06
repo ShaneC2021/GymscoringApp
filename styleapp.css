@@ -23,7 +23,7 @@
 
 .content-table thead tr {
   background-color: #050e10;
-  text-align: left;
+  text-align: center;
   color: white;
   font-weight: bold;
 
@@ -36,7 +36,7 @@
 
 .content-table tbody tr {
   border-bottom: solid 2px grey;
-  text-align: left;
+  text-align: center;
 }
 
 
@@ -44,12 +44,6 @@
   background-color: #474747;
   color: white;
 
-}
-
-
-.content-table tbody tr:last-oftype {
-
-border-bottom: 2px solid red;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -77,5 +71,7 @@ input[type="text"] {
 }
 
 .form-color, .table-bg {
+
   background-color: #ebebeb;
+
 }

@@ -1,51 +1,60 @@
 let competitors = [];
 let errorCount;
 
+function eScore() {
+  let e1 = parseFloat(document.getElementById("Ex1").value);
+  let e2 = parseFloat(document.getElementById("Ex2").value);
+  let e3 = parseFloat(document.getElementById("Ex3").value);
+  let e4 = parseFloat(document.getElementById("Ex4").value);
+  let e5 = parseFloat(document.getElementById("Ex5").value);
+  let e6 = parseFloat(document.getElementById("Ex6").value);
+  let deductions = e1 + e2 + e3 + e4 + e5 + e6;
+  let averageDeductions = deductions / 6;
+
+  return averageDeductions.toFixed(3);
+}
+ 
+
 function validate() {
-  errorCount = 0;                                     // resets errorCount when validate function is called
+  errorCount = 0;       // resets errorCount when validate function is called
   let arrayOfInputIds = ["Name","Ex1","Ex2","Ex3","Ex4","Ex5","Ex6","Dscore","Bonus","Penalty"]
   
+  // if fields are filled input is submitted and athlete score tabulated
   arrayOfInputIds.forEach(errorCheck);  
-  if(errorCount === 0)                                // if fields are filled input is submitted and athlete score tabulated 
+  if(errorCount === 0)                                 
   addCompetitors();
 }
 
-function addCompetitors() {   // function adds competitor object to array
+// function adds competitor object to array
+function addCompetitors() {   
 
   let competitor = {
-  name: document.getElementById("Name").value.toUpperCase(),
-  dscore: document.getElementById("Dscore").value,
-  e1: document.getElementById("Ex1").value,
-  e2: document.getElementById("Ex2").value,
-  e3: document.getElementById("Ex3").value,
-  e4: document.getElementById("Ex4").value,
-  e5: document.getElementById("Ex5").value,
-  e6: document.getElementById("Ex6").value,
-  bonus: document.getElementById("Bonus").value,
-  penalty: document.getElementById("Penalty").value, 
- 
-  finalScore: function() {                    // method to return an athlete's final score
-    let difficulty = parseFloat(this.dscore);
-    let ex1 = parseFloat(this.e1);
-    let ex2 = parseFloat(this.e2);
-    let ex3 = parseFloat(this.e3);
-    let ex4 = parseFloat(this.e4);
-    let ex5 = parseFloat(this.e5);
-    let ex6 = parseFloat(this.e6);
   
-    let bonusScore = parseFloat(this.bonus);
-    let penaltyScore = parseFloat(this.penalty);
-    let deductions = ex1 + ex2 + ex3 + ex4 + ex5 + ex6;
-    let averageDeductions = deductions / 6;
-    let fscore =  difficulty + (10 - averageDeductions) + bonusScore - penaltyScore;
-    return fscore.toFixed(3);
+  name: document.getElementById("Name").value.toUpperCase(),
+  difficultyScore: parseFloat(document.getElementById("Dscore").value),
+  executionScore: eScore(),
+  bonus: parseFloat(document.getElementById("Bonus").value),
+  penalty: parseFloat(document.getElementById("Penalty").value), 
+  rank: "",
+  finalScore: function() {                    // method to return an athlete's final score
+    let difficulty = this.difficultyScore;
+    let bonusScore = this.bonus;
+    let penaltyScore = this.penalty;
+    let finalScore =  difficulty + 10 - this.executionScore + bonusScore - penaltyScore;
+    return finalScore.toFixed(3);
   }
 };
-  
-competitors.push(competitor);                                 // competitor object is added to array
-document.getElementById("myForm").reset();                    // form is reset 
-competitors.sort((a,b) => b.finalScore() - a.finalScore());   // array is sorted in descending order
-loadTableData(competitors);                                   // array contents displayed in table
+ 
+  /* 
+   competitor object is added to array form is reset array is sorted in descending order ranks
+   athletes according to finalscore needs to be modified for ties
+   array contents displayed in table
+  */
+competitors.push(competitor);                                
+document.getElementById("myForm").reset();                     
+competitors.sort((a,b) => b.finalScore() - a.finalScore());   
+rank();                                                       
+loadTableData(competitors);                                  
 }
 
 
@@ -53,35 +62,47 @@ function loadTableData(athletes) {
   let tableBody = document.getElementById("tableData");       
   let dataHtml = "";
 
-  for (let athlete of athletes) {  // not particularly fond of the line below I know there is 
-                                  // probably a more efficient way to do this rather than have it hard coded in but atm this method makes sense
-                                  // in my head at
-   dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.dscore}</td><td>${athlete.bonus}</td>
-    <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td></tr>`;
+  for (let athlete of athletes) {  
+   dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.difficultyScore}</td><td>${athlete.executionScore}</td><td>${athlete.bonus}</td>
+    <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td><td>${athlete.rank}</td></tr>`;
   }
    tableBody.innerHTML = dataHtml;
   }
  
-function reset() {                                         // clears table and form resets form fields to neutral state
+
+  /* 
+    clears table and form resets form fields to neutral state
+    empties array clears table contents
+  */ 
+function reset() {                                        
   let form = document.getElementById("myForm");                             
   let tableBody = document.getElementById("tableData");                    
   let input = document.getElementsByTagName("input");
   
-  competitors.length = 0;                                  // empties array
-  tableBody.innerHTML = "";                                // clears table contents
+  competitors.length = 0;                                
+  tableBody.innerHTML = "";                               
   
+  // resets input border color to neutral state
   
-  for ( let i = 0; i < input.length; i++) {                // resets input border color to neutral state
+  for ( let i = 0; i < input.length; i++) {                
     input[i].style.borderColor = "";
   }
   form.reset();    
 }
-  
+   // if form field is empty border changes to red and error counter is incremented
 function errorCheck(string) {                                     
-  if(document.getElementById(string).value === "") {             // if form field is empty border changes to red and error counter is incremented
+  if(document.getElementById(string).value === "") {     
     document.getElementById(string).style.borderColor = "red";
     errorCount += 1;
   }
   else 
   document.getElementById(string).style.borderColor = "";                            
+}
+
+// ranks competitors using their index in the array after it has been sorted
+function rank () {
+ for (let i = 0; i < competitors.length; i++ ) {
+   competitors[i].rank = competitors.indexOf(competitors[i]) + 1;  
+
+ }
 }
