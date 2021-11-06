@@ -22,10 +22,11 @@
 }
 
 .content-table thead tr {
-  background-color: green;
+  background-color: #050e10;
   text-align: left;
   color: white;
   font-weight: bold;
+
 }
 
 .content-table th ,
@@ -34,19 +35,21 @@
 }
 
 .content-table tbody tr {
-  border-bottom: solid 1px grey;
+  border-bottom: solid 2px grey;
+  text-align: left;
 }
 
 
 .content-table tbody tr:nth-of-type(even) {
-  background-color: aquamarine;
+  background-color: #474747;
+  color: white;
 
 }
 
 
 .content-table tbody tr:last-oftype {
 
-border-bottom: 2px solid green;
+border-bottom: 2px solid red;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -57,6 +60,22 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+  border-radius: 15px;
+  width: 100px;
+  text-align: center;
+}
+
+input[type="text"] {
+  border-radius: 15px;
+  
+}
+
+#namebox {
+  margin-top: 25px;
+}
+
+.form-color, .table-bg {
+  background-color: #ebebeb;
 }

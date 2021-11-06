@@ -21,71 +21,70 @@
 
  
 
-  <div class="container-fluid bg-secondary m-0 p-0">
-    <div><h1>Scoring</h1></div>
-    <div class="row bg-warning m-0">
-      <div class="bg-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
+  <div class="container-fluid bg-secondary m-0 p-0 text-center">
+    <div><h1>Gymnastics Scoring Page</h1></div>
+    <div class="row m-0">
+      <div class=" form-color col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
         <form id="myForm" >
-          <div class=" d-flex bg-primary justify-content-center">
-            <input type="text" class="text-center" id="Name" placeholder="Name" size="25" type="text" name="fname">
+          <div id="namebox" class=" d-flex  justify-content-center">
+            <input type="text" class="text-center" id="Name" placeholder=" Athlete's Name" size="25" type="text" name="fname">
           </div>
           <div class="layout d-flex justify-content-around">
             <div class="d-flex flex-column justify-content-around">
               <div>
-                <input type="number" id="Ex1" style="width: 4em" placeholder="E1" step="0.1">
+                <input type="number" id="Ex1"  placeholder="E1" step="0.1">
               </div>  
               <div>
-                <input type="number" class="" id="Ex2" style="width: 4em" placeholder="E2" step="0.1">
+                <input type="number" id="Ex2"  placeholder="E2" step="0.1">
               </div>
               <div>  
-                <input type="number" class="" id="Ex3" style="width: 4em" placeholder="E3" step="0.1">
+                <input type="number" id="Ex3" placeholder="E3" step="0.1">
               </div>    
             </div>      
           
 
             <div class=" d-flex flex-column justify-content-around">
               <div>
-                <input type="number" class="" id="Ex4" style="width: 4em" placeholder="E4" step="0.1">
+                <input type="number" id="Ex4" placeholder="E4" step="0.1">
               </div>
               <div>  
-                <input type="number" class=""id="Ex5" style="width: 4em" placeholder="E5" step="0.1">
+                <input type="number" id="Ex5" placeholder="E5" step="0.1">
               </div>
               <div>
-                <input type="number" class= ""id="Ex6" style="width: 4em"placeholder="E6" step="0.1">
+                <input type="number" id="Ex6" placeholder="E6" step="0.1">
               </div>
             </div>  
             
             <div class="d-flex flex-column justify-content-around">
               <div>
-                <input type="number" class="" id="Dscore" style="width: 5em" placeholder="Dscore" size="1" step="0.1">
+                <input type="number" class="" id="Dscore" placeholder="Dscore" size="1" step="0.1">
               </div>
             
               <div>    
-                <input type="number" class="" id="Penalty" style="width: 5em" placeholder="Penalty" size="1" step="0.1">  
+                <input type="number" class="" id="Penalty" placeholder="Penalty" size="1" step="0.1">  
               </div> 
               
               <div>    
-                <input type="number" class="" id="Bonus" style="width: 5em" placeholder="Bonus" size="1" step="0.1">
+                <input type="number" class="" id="Bonus" placeholder="Bonus" size="1" step="0.1">
               </div>
             </div>
           </div>
         </form>
       </div>
         
-      <div class="d-flex justify-content-evenly justify-content-center align-items-center bg-info col-lg-2 col-md-2 col-sm-12 col-xs-12 m-0 p-0">
+      <div class="d-flex justify-content-evenly justify-content-center align-items-center form-color col-lg-2 col-md-2 col-sm-12 col-xs-12 m-0 p-0">
         <div>
-          <button type="submit" onclick="validate()" class="btn btn-secondary btn-sm">Submit</button>
+          <button type="submit" onclick="validate()" class="btn btn-outline-primary btn-sm">Submit</button>
         </div>
         <div>
-          <button type="reset" onclick="reset()" class="btn btn-warning btn-sm">Reset</button>
+          <button type="reset" onclick="reset()" class="btn btn-outline-danger btn-sm">Reset</button>
         </div>
-          
       </div>
     
     
-      
+      <!--style="overflow-x:auto;"-->
   
-      <div id="table-container" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0 m-0"  style="overflow-x:auto;">
+      <div id="table-container" class="table-bg col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0 m-0" style="overflow-x:auto;">
         <table id ="mytable" class="content-table" width="100%">
           <thead>
             <tr>
@@ -94,7 +93,6 @@
               <th>Bonus</th>
               <th>Penalty</th>
               <th>Score</th>
-             
             </tr>
           </thead>
           <tbody id ="tableData">
