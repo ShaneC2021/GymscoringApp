@@ -1,16 +1,46 @@
 let competitors = [];
 let errorCount;
+let judges = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+ document.getElementById("numberOfJudges").style.display = "block";
+});
+
+function numOfJudges () {
+  let numberOfJudges ;
+  let popupModal = document.getElementById("numberOfJudges");
+  
+  numberOfJudges = document.getElementById("judgeOptions");
+  judges = numberOfJudges.options[numberOfJudges.selectedIndex].value;
+  popupModal.style.display = "none";
+
+  function disable() {
+    let escores = document.getElementsByClassName("execution");
+     for( let i = escores.length; i > judges; i--)
+     escores[i-1].disabled = true;
+  }
+  
+  disable();
+  
+}
 
 function eScore() {
-  let e1 = parseFloat(document.getElementById("Ex1").value);
-  let e2 = parseFloat(document.getElementById("Ex2").value);
-  let e3 = parseFloat(document.getElementById("Ex3").value);
-  let e4 = parseFloat(document.getElementById("Ex4").value);
-  let e5 = parseFloat(document.getElementById("Ex5").value);
-  let e6 = parseFloat(document.getElementById("Ex6").value);
-  let deductions = e1 + e2 + e3 + e4 + e5 + e6;
-  let averageDeductions = deductions / 6;
+  let averageDeductions;
+  let escores = document.getElementsByClassName("execution");
 
+  function deductions() {
+    let total = 0;
+
+    for (let i = 0; i < escores.length; i++) {
+      if (escores[i].disabled === true)
+        escores[i].value = 0;
+
+      total = parseFloat(escores[i].value) + total;
+    }
+    return total;
+  }
+    
+  averageDeductions = parseFloat(deductions() / judges);
   return averageDeductions.toFixed(3);
 }
  
@@ -91,7 +121,7 @@ function reset() {
 }
    // if form field is empty border changes to red and error counter is incremented
 function errorCheck(string) {                                     
-  if(document.getElementById(string).value === "") {     
+  if((document.getElementById(string).value === "") && (document.getElementById(string).disabled ===false )) {     
     document.getElementById(string).style.borderColor = "red";
     errorCount += 1;
   }
