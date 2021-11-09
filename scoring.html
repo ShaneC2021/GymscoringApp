@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gymnastics Scoring App</title>
+    <title>Gymnastics Judges Scoring App</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script
@@ -19,8 +19,8 @@
   </head>
   <body>
     
-      <div id="numberOfJudges">
-      <div><p>Select # of Judges</p></div>
+      <div id="modal" class="modal">
+      <div><p>Please Select # of Judges for the Event</p></div>
       <div>
         <select id="judgeOptions" onchange="numOfJudges()">
           <option></option>
@@ -33,10 +33,11 @@
         </select>
       </div>
     </div>
+    <div class="modal-overlay" id ="modal-overlay"></div>
     
     
     <div class="container-fluid bg-secondary m-0 p-0 text-center">
-      <div><h1>Gymnastics Scoring Page</h1></div>
+      <div><h1>Gymnastics Judges Scoring App</h1></div>
       <div class="row m-0">
         <div class=" form-color col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
           <form id="myForm" >

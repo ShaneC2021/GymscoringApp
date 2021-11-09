@@ -3,31 +3,44 @@ let errorCount;
 let judges = 0;
 
 window.addEventListener('DOMContentLoaded', () => {
- document.getElementById("numberOfJudges").style.display = "block";
+ document.getElementById("modal").style.display = "block";
 });
 
 function numOfJudges () {
   let numberOfJudges ;
-  let popupModal = document.getElementById("numberOfJudges");
+  let popupModal = document.getElementById("modal");
+  let modalOverlay=document.getElementById("modal-overlay");
   
   numberOfJudges = document.getElementById("judgeOptions");
   judges = numberOfJudges.options[numberOfJudges.selectedIndex].value;
-  popupModal.style.display = "none";
-
-  function disable() {
+ 
+  function disableInputs() {
     let escores = document.getElementsByClassName("execution");
-     for( let i = escores.length; i > judges; i--)
-     escores[i-1].disabled = true;
+    for( let i = escores.length; i > judges; i--)
+    escores[i-1].disabled = true;
   }
   
-  disable();
+  disableInputs();
+
+  function fadeModals() {
+    modalOverlay.classList.toggle("closed");
+    popupModal.classList.toggle("closed");
+  }
   
+  fadeModals();
+
+  // synchronizes the fade out with the display being set to none
+  setTimeout(function() {
+    modalOverlay.style.display = "none";
+    popupModal.style.display = "none";
+  }, 1000);
 }
 
 function eScore() {
-  let averageDeductions;
+  let averageDeductions = 0;
   let escores = document.getElementsByClassName("execution");
-
+  let executionScore = 0;
+  
   function deductions() {
     let total = 0;
 
@@ -41,7 +54,8 @@ function eScore() {
   }
     
   averageDeductions = parseFloat(deductions() / judges);
-  return averageDeductions.toFixed(3);
+  executionScore = (10 - averageDeductions); 
+  return executionScore;
 }
  
 
@@ -62,15 +76,16 @@ function addCompetitors() {
   
   name: document.getElementById("Name").value.toUpperCase(),
   difficultyScore: parseFloat(document.getElementById("Dscore").value),
-  executionScore: eScore(),
+  executionScore: parseFloat(eScore()),
   bonus: parseFloat(document.getElementById("Bonus").value),
   penalty: parseFloat(document.getElementById("Penalty").value), 
   rank: "",
   finalScore: function() {                    // method to return an athlete's final score
     let difficulty = this.difficultyScore;
     let bonusScore = this.bonus;
+    let execution = this.executionScore;
     let penaltyScore = this.penalty;
-    let finalScore =  difficulty + 10 - this.executionScore + bonusScore - penaltyScore;
+    let finalScore = difficulty + execution + bonusScore - penaltyScore;
     return finalScore.toFixed(3);
   }
 };
@@ -133,6 +148,5 @@ function errorCheck(string) {
 function rank () {
  for (let i = 0; i < competitors.length; i++ ) {
    competitors[i].rank = competitors.indexOf(competitors[i]) + 1;  
-
- }
+  }
 }
