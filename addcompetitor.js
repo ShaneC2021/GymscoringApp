@@ -2,9 +2,17 @@ let competitors = [];
 let errorCount;
 let judges = 0;
 
+let form =document.getElementById("myForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault()
+});
+
 window.addEventListener('DOMContentLoaded', () => {
  document.getElementById("modal").style.display = "block";
 });
+
+
 
 function numOfJudges () {
   let numberOfJudges ;
@@ -86,6 +94,7 @@ function addCompetitors() {
     let execution = this.executionScore;
     let penaltyScore = this.penalty;
     let finalScore = difficulty + execution + bonusScore - penaltyScore;
+    console.log(finalScore);
     return finalScore.toFixed(3);
   }
 };
@@ -108,7 +117,7 @@ function loadTableData(athletes) {
   let dataHtml = "";
 
   for (let athlete of athletes) {  
-   dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.difficultyScore}</td><td>${athlete.executionScore}</td><td>${athlete.bonus}</td>
+   dataHtml += `<tr><td>${athlete.name}</td><td>${athlete.difficultyScore.toFixed(3)}</td><td>${athlete.executionScore.toFixed(3)}</td><td>${athlete.bonus}</td>
     <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td><td>${athlete.rank}</td></tr>`;
   }
    tableBody.innerHTML = dataHtml;
@@ -136,8 +145,8 @@ function reset() {
 }
    // if form field is empty border changes to red and error counter is incremented
 function errorCheck(string) {                                     
-  if((document.getElementById(string).value === "") && (document.getElementById(string).disabled ===false )) {     
-    document.getElementById(string).style.borderColor = "red";
+  if((document.getElementById(string).value === "") && (document.getElementById(string).disabled === false )) {     
+    document.getElementById(string).style.borderColor = "blue";
     errorCount += 1;
   }
   else 

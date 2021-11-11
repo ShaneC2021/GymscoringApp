@@ -1,6 +1,7 @@
 *body {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 #button {
@@ -41,7 +42,6 @@
 
 .closed {
   animation: fadeout 1s;
-  
 }
 
 @keyframes fadein {
@@ -63,7 +63,7 @@
 }
 
 .layout { 
-  height: 50vh;
+  height: 25vh;
 }
 
 
@@ -75,7 +75,9 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
+.input { border-radius: 35px;
 
+}
 .content-table thead tr {
   background-color: #050e10;
   text-align: center;
@@ -108,14 +110,22 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+  color:white;
   border-radius: 15px;
+  border: 3px solid rgb(46, 6, 29);
   width: 75px;
   text-align: center;
+  background-color:purple;
+  
+  font-weight:bolder;
+
 }
 
 input[type="text"] {
   border-radius: 15px;
+  border: 3px solid rgb(46, 6, 29);
 }
+
 
 #namebox {
   margin-top: 25px;
@@ -123,4 +133,8 @@ input[type="text"] {
 
 .form-color, .table-bg {
 background-color: #ebebeb;
+}
+
+.tabulator-color {
+  background-color:rgb(46, 6, 29);
 }
