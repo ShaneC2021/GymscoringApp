@@ -37,11 +37,16 @@
   border-radius: 30px;
   opacity: 0.75;
   animation: fadein 1.5s;
+}
 
+.desk {
+  background-color: burlywood;
+  border-radius: 2em;
+  height: 100vh;
 }
 
 .closed {
-  animation: fadeout 1s;
+  animation: fadeout 0.75s;
 }
 
 @keyframes fadein {
@@ -63,7 +68,7 @@
 }
 
 .layout { 
-  height: 25vh;
+  height: 30vh;
 }
 
 
@@ -75,8 +80,8 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
-.input { border-radius: 35px;
-
+.input { 
+  border-radius: 35px;
 }
 .content-table thead tr {
   background-color: #050e10;
@@ -116,10 +121,15 @@ input[type="number"] {
   width: 75px;
   text-align: center;
   background-color:purple;
-  
   font-weight:bolder;
 
 }
+
+input[type="number"]:hover {
+  background-color: tomato;
+
+}
+
 
 input[type="text"] {
   border-radius: 15px;
@@ -131,10 +141,38 @@ input[type="text"] {
   margin-top: 25px;
 }
 
-.form-color, .table-bg {
-background-color: #ebebeb;
-}
+ .table-bg {
+   background-color:white;
+   border: 3px solid black;
+ border-radius: 2rem;
+ }
 
 .tabulator-color {
   background-color:rgb(46, 6, 29);
+}
+.fa-rotate-135 {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+i:hover {
+  cursor: pointer;
+  color:red;
+}
+
+.timer {
+  background-color:black;
+  border:1px solid rgb(124, 97, 97);
+  color:red;
+  font-weight: bolder;
+  width:40px;
+  height:60px;
+}
+
+.circle{ 
+  border-radius: 40%;
+  
 }
