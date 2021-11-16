@@ -160,35 +160,50 @@ function rank() {
   }
 }
 
-//added  stopWatch
+//added  stopWatch    I know more global variables probably a better way to do this
+let stopTime = true;
 let milicounter = 0;
 let secondsCounter = 0;
 let minuteCounter = 0;
 let seconds = document.getElementById("seconds");
 let minutes = document.getElementById("minutes");
-
 let myTimer;
 
 function begin() {
-  myTimer = setInterval(function () {
-    milicounter += 1;
-    secondsCounter += 1;
+  if (stopTime === true) {
+    stopTime = false;
+    myTimer = setInterval(function () {
+      milicounter += 1;
+      secondsCounter += 1;
 
-    if (secondsCounter < 10) seconds.innerHTML = `0${secondsCounter}`;
-    else document.getElementById("seconds").innerText = secondsCounter;
+      if (secondsCounter < 10) seconds.innerText = `0${secondsCounter}`;
+      else document.getElementById("seconds").innerText = secondsCounter;
 
-    if (secondsCounter === 60) {
-      secondsCounter = 0;
-      minuteCounter += 1;
-      seconds.innerHTML = `0${secondsCounter}`;
-    }
+      if (secondsCounter === 60) {
+        secondsCounter = 0;
+        minuteCounter += 1;
+        seconds.innerText = `0${secondsCounter}`;
+      }
 
-    if (minuteCounter < 10)
-      document.getElementById("minutes").innerText = `0${minuteCounter}`;
-    else document.getElementById("minutes").innerText = minuteCounter;
-  }, 1000);
+      if (minuteCounter < 10)
+        document.getElementById("minutes").innerText = `0${minuteCounter}`;
+      else document.getElementById("minutes").innerText = minuteCounter;
+    }, 1000);
+  }
 }
 
-function stop() {
-  clearInterval(myTimer);
+function stopTimer() {
+  if (stopTime === false) {
+    stopTime = true;
+
+    clearInterval(myTimer);
+  }
+}
+
+function clearTimer() {
+  if (stopTime === true) {
+    secondsCounter = 0;
+    minuteCounter = 0;
+    seconds.innerText = "00";
+  }
 }

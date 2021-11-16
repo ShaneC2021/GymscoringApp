@@ -20,9 +20,9 @@
 <body>
   <div id="modal" class="modal">
     <div>
-      <p>Please Select # of Judges for the Event</p>
-    </div>
-    <div>
+      <p>Please select the number of Judges for the event.</p>
+    
+    
       <select id="judgeOptions" onchange="numOfJudges()">
         <option></option>
         <option>1</option>
@@ -36,31 +36,31 @@
   </div>
   <div class="modal-overlay" id="modal-overlay"></div>
 
-  <div class="container-fluid  m-0 p-3 text-center desk">
+  <div class="container-fluid m-0 p-3 text-center desk">
     <div>
       <h1>Judges Table</h1>
     </div>
     <div class="row m-0">
-      <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
         <form id="myForm" onsubmit="validate()">
           <div class="border border-secondary tabulator-color input m-0">
             <div id="namebox" class="d-flex justify-content-center">
-              <input type="text" class="text-center " id="Name" placeholder=" Athlete's Name" size="25" type="text"
-                name="fname" />
+              <input type="text" class="text-center" id="Name" placeholder=" Athlete's Name" size="25" type="text"
+                name="fname" tabindex="1" />
             </div>
             <div class="layout d-flex justify-content-around">
               <div class="d-flex flex-column justify-content-around">
                 <div>
-                  <input type="number" id="Ex1" placeholder="E1" step="0.1" class="execution" />
+                  <input type="number" id="Ex1" placeholder="E1" step="0.1" class="execution" tabindex="2" />
                 </div>
                 <div>
-                  <input type="number" id="Ex2" placeholder="E2" step="0.1" class="execution" />
+                  <input type="number" id="Ex2" placeholder="E2" step="0.1" class="execution" tabindex="3" />
                 </div>
                 <div>
-                  <input type="number" id="Ex3" placeholder="E3" step="0.1" class="execution" />
+                  <input type="number" id="Ex3" placeholder="E3" step="0.1" class="execution" tabindex="4" />
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-outline-primary btn-sm">
+                  <button type="submit" class="btn btn-outline-primary btn-sm" tabindex="11">
                     Submit
                   </button>
                 </div>
@@ -68,16 +68,16 @@
 
               <div class="d-flex flex-column justify-content-around">
                 <div>
-                  <input type="number" id="Ex4" placeholder="E4" step="0.1" class="execution" />
+                  <input type="number" id="Ex4" placeholder="E4" step="0.1" class="execution" tabindex="5" />
                 </div>
                 <div>
-                  <input type="number" id="Ex5" placeholder="E5" step="0.1" class="execution" />
+                  <input type="number" id="Ex5" placeholder="E5" step="0.1" class="execution" tabindex="6" />
                 </div>
                 <div>
-                  <input type="number" id="Ex6" placeholder="E6" step="0.1" class="execution" />
+                  <input type="number" id="Ex6" placeholder="E6" step="0.1" class="execution" tabindex="7" />
                 </div>
                 <div>
-                  <button type="reset" class="btn btn-outline-danger btn-sm">
+                  <button type="reset" class="btn btn-outline-danger btn-sm" tabindex="12">
                     Clear Tabs
                   </button>
                 </div>
@@ -85,13 +85,13 @@
 
               <div class="d-flex flex-column justify-content-around">
                 <div>
-                  <input type="number" class="" id="Dscore" placeholder="Dscore" size="1" step="0.1" />
+                  <input type="number" class="" id="Dscore" placeholder="Dscore" size="1" step="0.1" tabindex="8" />
                 </div>
                 <div>
-                  <input type="number" class="" id="Penalty" placeholder="Penalty" size="1" step="0.1" />
+                  <input type="number" class="" id="Penalty" placeholder="Penalty" size="1" step="0.1" tabindex="8" />
                 </div>
                 <div>
-                  <input type="number" class="" id="Bonus" placeholder="Bonus" size="1" step="0.1" />
+                  <input type="number" class="" id="Bonus" placeholder="Bonus" size="1" step="0.1" tabindex="10" />
                 </div>
               </div>
             </div>
@@ -100,38 +100,43 @@
       </div>
 
       <div class="
-            d-flex flex-column
-            justify-content-evenly
-            justify-content-center
-            
-            
+            d-flex
+            flex-column
+            justify-content-evenly justify-content-center
             col-lg-3 col-md-3 col-sm-12 col-xs-12
             m-0
             p-4
           ">
-        <div class=" d-flex  flex-row justify-content-center p-2">
+        <div class="d-flex flex-row justify-content-center p-2">
           <div class="d-flex">
             <div id="minutes" class="timer">00</div>
             <div id="seconds" class="timer">00</div>
-        
           </div>
           <div class="d-flex">
-         
-            <i class="fas fa-eraser fa-1x fa-rotate-90 " onclick="reset()"></i>
-         
+            <i class="fas fa-eraser fa-1x fa-rotate-90" onclick="reset()"></i>
           </div>
-          
         </div>
         <div class="d-flex justify-content-evenly">
-          <div class="start " onclick="begin()"><button type="button" class="btn btn-small circle bg-success">Start</button></div>
-          <div class="stop " onclick="stop()"><button type="button" class="btn btn-small circle bg-danger">Stop</button></div>
-          <div class="on " onclick="reset()"><button type="button" class="btn btn-small circle bg-warning">Reset</button></div>
-          
+          <div id="start ">
+            <button type="button" class="btn btn-small circle bg-success" onclick="begin()">
+              Start
+            </button>
+          </div>
+          <div id="stop ">
+            <button type="button" class="btn btn-small circle bg-danger" onclick="stopTimer()">
+              Stop
+            </button>
+          </div>
+          <div id="reset ">
+            <button type="button" class="btn btn-small circle bg-warning" onclick="clearTimer()">
+              Reset
+            </button>
+          </div>
         </div>
       </div>
 
-      <div id="table-container" class=" table-bg col-lg-5 col-md-5 col-sm-12 col-xs-12 p-2 m-0" style="overflow-x: auto">
-        <table id="mytable" class="content-table table table-bordered table-sm " width="100%">
+      <div id="table-container" class="table-bg col-lg-5 col-md-5 col-sm-12 col-xs-12 p-2 m-0" style="overflow-x: auto">
+        <table id="mytable" class="content-table table table-bordered table-sm" width="100%">
           <thead>
             <tr>
               <th>Name</th>
