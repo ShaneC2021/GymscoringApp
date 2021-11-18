@@ -8,13 +8,13 @@
   width: 30%;
 }
 
- .modal {
+.modal {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: 40vh;
-  max-width: 75vh;
+  max-width: 35vh;
+
   z-index: 2;
   display: none;
   height: 30vh;
@@ -23,7 +23,7 @@
   background-color: white;
   text-align: center;
   font-style: normal;
-  font-weight:bold ;
+  font-weight: bold;
   opacity: 0.75;
   animation: fadein 1.5s;
 }
@@ -32,15 +32,15 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 1; 
+  z-index: 1;
   background-color: rgb(100, 84, 84);
   border-radius: 30px;
-  opacity: 0.80;
+  opacity: 0.8;
   animation: fadein 1.5s;
 }
 
 .desk {
-  background-color:  #c04000;
+  background-image: url(images/desk.png);
   border-radius: 2em;
   height: 100vh;
 }
@@ -50,27 +50,26 @@
 }
 
 @keyframes fadein {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 0.75;
-	}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.75;
+  }
 }
 
 @keyframes fadeout {
-	from {
-		opacity:0.75;
-	}
-	to {
-		opacity:0;
-	}
+  from {
+    opacity: 0.75;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-.layout { 
+.layout {
   height: 30vh;
 }
-
 
 .content-table {
   border-collapse: collapse;
@@ -80,7 +79,7 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
-.input { 
+.input {
   border-radius: 35px;
 }
 .content-table thead tr {
@@ -90,7 +89,7 @@
   font-weight: bold;
 }
 
-.content-table th ,
+.content-table th,
 .content-table td {
   padding: 3px;
 }
@@ -98,7 +97,6 @@
 .content-table tbody tr {
   text-align: center;
 }
-
 
 .content-table tbody tr:nth-of-type(even) {
   background-color: #474747;
@@ -115,40 +113,36 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-  color:white;
+  color: white;
   border-radius: 15px;
   border: 3px solid rgb(46, 6, 29);
   width: 75px;
   text-align: center;
-  background-color:purple;
-  font-weight:bolder;
-
+  background-color: purple;
+  font-weight: bolder;
 }
 
 input[type="number"]:hover {
   background-color: tomato;
-
 }
-
 
 input[type="text"] {
   border-radius: 15px;
   border: 3px solid rgb(46, 6, 29);
 }
 
-
 #namebox {
   margin-top: 25px;
 }
 
- .table-bg {
-   background-color:white;
-   border: 3px solid black;
- border-radius: 2rem;
- }
+.table-bg {
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 2rem;
+}
 
 .tabulator-color {
-  background-color:rgb(46, 6, 29);
+  background-color: rgb(46, 6, 29);
 }
 .fa-rotate-135 {
   -webkit-transform: rotate(90deg);
@@ -160,22 +154,37 @@ input[type="text"] {
 
 i:hover {
   cursor: pointer;
-  color:red;
+  color: red;
 }
 
 .timer {
-  background-color:black;
-  border:1px solid rgb(124, 97, 97);
-  color:white;
+  background-color: black;
+  border: 1px solid rgb(124, 97, 97);
+  color: white;
   font-weight: bolder;
   font-size: 2em;
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
   border-radius: 12px;
-  
 }
 
-.circle{ 
+.circle {
   border-radius: 40%;
-  
+}
+#toolbar {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: grey;
+}
+
+#toolbar label {
+  font-size: 1rem;
+}
+
+#drawing-board {
+  height: 25vh;
+  width: 75%;
+  background-color: blue;
+  border: 1px dotted black;
 }
