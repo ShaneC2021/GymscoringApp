@@ -2,6 +2,7 @@ let competitors = [];
 let errorCount;
 let judges = 0;
 
+var drawing = false;
 
 window.addEventListener("DOMContentLoaded", () => {
   let form = document.getElementById("myForm");
@@ -200,7 +201,7 @@ function errorCheck(string) {
     document.getElementById(string).value === "" &&
     document.getElementById(string).disabled === false
   ) {
-    document.getElementById(string).style.borderColor = "blue";
+    document.getElementById(string).style.borderColor = "orange";
     errorCount += 1;
   } else document.getElementById(string).style.borderColor = "";
 }
@@ -260,3 +261,69 @@ function clearTimer() {
   }
 }
 
+const canvas = document.getElementById("myCanvas");
+canvas.width = window.innerWidth;
+canvas.height = 200;
+
+let context = canvas.getContext("2d");
+context.fillStyle = "green";
+context.fillRect(0, 0, canvas.width, canvas.height);
+
+let drawColor = "black";
+let drawWidth = "5";
+let isDrawing = false;
+
+canvas.addEventListener("touchstart", start, false);
+canvas.addEventListener("touchmove", draw, false);
+canvas.addEventListener("mousedown", start, false);
+canvas.addEventListener("mousemove", draw, false);
+
+canvas.addEventListener("touchend", stop, false);
+canvas.addEventListener("mouseup", stop, false);
+canvas.addEventListener("mouseout", stop, false);
+
+function start(event) {
+  isDrawing = true;
+  context.beginPath();
+  context.moveTo(
+    event.clientX - canvas.offsetLeft,
+    event.clientY - canvas.offsetTop
+ 
+  );
+  event.preventDefault();
+}
+
+function draw(event) {
+  if (isDrawing){
+    context.lineTo(
+      event.clientX - canvas.offsetLeft,
+      event.clientY - canvas.offsetTop
+    );
+    context.strokeStyle = drawColor;
+    context.lineWidth = drawWidth;
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    context.stroke();
+  }
+  event.preventDefault();
+}
+
+function stop(event) {
+  if(isDrawing) {
+    context.stroke();
+    context.closePath();
+    isDrawing = false;
+  }
+  event.preventDefault();
+}
+
+function changeColor(element) {
+  drawColor = element.style.background;
+
+}
+
+function clearCanvas() {
+  context.fillStyle = "green";
+  context.clearRect(0,0,canvas.width,canvas.height);
+  context.fillRect(0,0,canvas.width,canvas.height);
+}

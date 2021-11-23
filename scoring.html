@@ -37,14 +37,14 @@
   </div>
   <div class="modal-overlay" id="modal-overlay"></div> 
 
-  <div class="container-fluid m-0 p-3 desk">
+  <div class="container-fluid m-0 p-0 desk">
     <div class="text-center">
       <h1>Judges Table</h1>
     </div>
     <div class="row m-0">
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-0 m-0">
         <form id="myForm" onsubmit="validate()">
-          <div class="border border-secondary tabulator-color input m-0">
+          <div class="border border-secondary tabulator-color input m-1">
             <div id="namebox" class="d-flex justify-content-center">
               <input type="text" class="text-center" id="Name" placeholder=" Athlete's Name" size="25" type="text"
                 name="fname" tabindex="1" />
@@ -152,27 +152,27 @@
           <tbody id="tableData"></tbody>
         </table>
       </div>
-    </div>
+    </div>  
     
     
-    <div class="row m-1">
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <div id="toolbar" class="toolbar">
-          <h2>Script</h2>
-          <label for="stroke">stroke</label>
-          <input id="stroke" name="stroke" type="color">
-          <label for ="lineWidth">LineWidth</label>
-          <input id="lineWidth" name="lineWidth" type="number" value="5"> 
-          <button id="clear">Clear</button>
+    <div class="row m-0 p-0">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-0 p-0">
+        
+      <div class="field m-0 p-0">
+        <canvas id="myCanvas"></canvas>
+        <div class="tools d-flex justify-content-center">
+          <button onclick="clearCanvas()" type="button" class="button">Clear</button>
+          <div onclick="changeColor(this)" class="color-field" style="background: red"></div>
+          <div onclick="changeColor(this)" class="color-field" style="background: black"></div>
+          <div onclick="changeColor(this)"class="color-field" style="background: green"></div>
+          <div onclick="changeColor(this)" class="color-field" style="background: blue"></div>
+          <input oninput="drawColor=this.value" type="color" class="color-picker">
+          <input oninput="drawWidth=this.value" type="range" min="1" max="20" class="pen-range">
         </div>
       </div>
-      <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8 ">
-        <div class="drawing-board">
-          <canvas id="drawing-board"></canvas>
-        </div>
 
-      </div>
-    </div> 
+    </div>
+    </div>
   </div>
   <script src="addcompetitor.js"></script>
 </body>
