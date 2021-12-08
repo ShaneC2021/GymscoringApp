@@ -2,8 +2,6 @@ let competitors = [];
 let errorCount;
 let judges = 0;
 
-var drawing = false;
-
 window.addEventListener("DOMContentLoaded", () => {
   let form = document.getElementById("myForm");
   let modal = document.getElementById("modal");
@@ -15,8 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   trapFocus(modal);
 });
-
-////////////
 
 const trapFocus = (element, prevFocusableElement = document.activeElement) => {
   const focusableEls = Array.from(
@@ -60,8 +56,6 @@ const trapFocus = (element, prevFocusableElement = document.activeElement) => {
     },
   };
 };
-
-////////////////////////
 
 function numOfJudges() {
   let numberOfJudges;
@@ -171,7 +165,9 @@ function loadTableData(athletes) {
     }</td>
     <td>${athlete.penalty}</td><td>${athlete.finalScore()}</td><td>${
       athlete.rank
-    }</td></tr>`;
+    }</td><td><i class="bi bi-trash m-1 garbage" onclick="erase(${
+      athlete.rank
+    })"></i></td></tr>`;
   }
   tableBody.innerHTML = dataHtml;
 }
@@ -180,6 +176,12 @@ function loadTableData(athletes) {
     clears table and form resets form fields to neutral state
     empties array clears table contents
   */
+function clearFields() {
+  let modal = document.getElementById("confirmation");
+  modal.style.display = "block";
+  trapFocus(modal);
+}
+
 function reset() {
   let form = document.getElementById("myForm");
   let tableBody = document.getElementById("tableData");
@@ -193,8 +195,29 @@ function reset() {
   for (let i = 0; i < input.length; i++) {
     input[i].style.borderColor = " rgb(46, 6, 29)";
   }
-  form.reset();
 }
+
+function confirm() {
+  let form = document.getElementById("myForm");
+  let tableBody = document.getElementById("tableData");
+  let input = document.getElementsByTagName("input");
+  let modal = document.getElementById("confirmation");
+  let choice = document.getElementById("choice");
+  let selection = choice.options[choice.selectedIndex].value;
+
+  if (selection === "Yes") {
+    competitors.length = 0;
+    tableBody.innerHTML = "";
+
+    // resets input border color to neutral state
+    for (let i = 0; i < input.length; i++) {
+      input[i].style.borderColor = " rgb(46, 6, 29)";
+    }
+    // form.reset();
+    modal.style.display = "none";
+  } else modal.style.display = "none";
+}
+
 // if form field is empty border changes to blue and error counter is incremented
 function errorCheck(string) {
   if (
@@ -261,69 +284,23 @@ function clearTimer() {
   }
 }
 
-const canvas = document.getElementById("myCanvas");
-canvas.width = window.innerWidth;
-canvas.height = 200;
+function erase(ranking) {
+  let indexOfAthlete = ranking - 1;
+  let tableBody = document.getElementById("tableData");
+  tableBody.innerHTML = ""; //clear table body
 
-let context = canvas.getContext("2d");
-context.fillStyle = "green";
-context.fillRect(0, 0, canvas.width, canvas.height);
+  /* delete object at given index in array
+     update rank of items in array
+     update table based on new array
+  */
 
-let drawColor = "black";
-let drawWidth = "5";
-let isDrawing = false;
+  competitors.splice(indexOfAthlete, 1);
+  if (competitors.length === 0) {
+    loadTableData(competitors);
+  } else {
+    competitors.sort((a, b) => b.finalScore() - a.finalScore());
+    rank();
 
-canvas.addEventListener("touchstart", start, false);
-canvas.addEventListener("touchmove", draw, false);
-canvas.addEventListener("mousedown", start, false);
-canvas.addEventListener("mousemove", draw, false);
-
-canvas.addEventListener("touchend", stop, false);
-canvas.addEventListener("mouseup", stop, false);
-canvas.addEventListener("mouseout", stop, false);
-
-function start(event) {
-  isDrawing = true;
-  context.beginPath();
-  context.moveTo(
-    event.clientX - canvas.offsetLeft,
-    event.clientY - canvas.offsetTop
- 
-  );
-  event.preventDefault();
-}
-
-function draw(event) {
-  if (isDrawing){
-    context.lineTo(
-      event.clientX - canvas.offsetLeft,
-      event.clientY - canvas.offsetTop
-    );
-    context.strokeStyle = drawColor;
-    context.lineWidth = drawWidth;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.stroke();
+    loadTableData(competitors);
   }
-  event.preventDefault();
-}
-
-function stop(event) {
-  if(isDrawing) {
-    context.stroke();
-    context.closePath();
-    isDrawing = false;
-  }
-  event.preventDefault();
-}
-
-function changeColor(element) {
-  drawColor = element.style.background;
-
-}
-
-function clearCanvas() {
-  context.fillStyle = "green";
-  context.clearRect(0,0,canvas.width,canvas.height);
-  context.fillRect(0,0,canvas.width,canvas.height);
 }

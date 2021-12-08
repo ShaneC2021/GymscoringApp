@@ -3,7 +3,6 @@
 var competitors = [];
 var errorCount;
 var judges = 0;
-var drawing = false;
 window.addEventListener("DOMContentLoaded", function () {
   var form = document.getElementById("myForm");
   var modal = document.getElementById("modal");
@@ -12,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
   });
   trapFocus(modal);
-}); ////////////
+});
 
 var trapFocus = function trapFocus(element) {
   var prevFocusableElement = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.activeElement;
@@ -51,8 +50,7 @@ var trapFocus = function trapFocus(element) {
       prevFocusableElement.focus();
     }
   };
-}; ////////////////////////
-
+};
 
 function numOfJudges() {
   var numberOfJudges;
@@ -148,7 +146,7 @@ function loadTableData(athletes) {
   try {
     for (var _iterator = athletes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var athlete = _step.value;
-      dataHtml += "<tr><td>".concat(athlete.name, "</td><td>").concat(athlete.difficultyScore.toFixed(3), "</td><td>").concat(athlete.executionScore.toFixed(3), "</td><td>").concat(athlete.bonus, "</td>\n    <td>").concat(athlete.penalty, "</td><td>").concat(athlete.finalScore(), "</td><td>").concat(athlete.rank, "</td></tr>");
+      dataHtml += "<tr><td>".concat(athlete.name, "</td><td>").concat(athlete.difficultyScore.toFixed(3), "</td><td>").concat(athlete.executionScore.toFixed(3), "</td><td>").concat(athlete.bonus, "</td>\n    <td>").concat(athlete.penalty, "</td><td>").concat(athlete.finalScore(), "</td><td>").concat(athlete.rank, "</td><td><i class=\"bi bi-trash m-1 garbage\" onclick=\"erase(").concat(athlete.rank, ")\"></i></td></tr>");
     }
   } catch (err) {
     _didIteratorError = true;
@@ -173,6 +171,12 @@ function loadTableData(athletes) {
   */
 
 
+function clearFields() {
+  var modal = document.getElementById("confirmation");
+  modal.style.display = "block";
+  trapFocus(modal);
+}
+
 function reset() {
   var form = document.getElementById("myForm");
   var tableBody = document.getElementById("tableData");
@@ -183,8 +187,27 @@ function reset() {
   for (var i = 0; i < input.length; i++) {
     input[i].style.borderColor = " rgb(46, 6, 29)";
   }
+}
 
-  form.reset();
+function confirm() {
+  var form = document.getElementById("myForm");
+  var tableBody = document.getElementById("tableData");
+  var input = document.getElementsByTagName("input");
+  var modal = document.getElementById("confirmation");
+  var choice = document.getElementById("choice");
+  var selection = choice.options[choice.selectedIndex].value;
+
+  if (selection === "Yes") {
+    competitors.length = 0;
+    tableBody.innerHTML = ""; // resets input border color to neutral state
+
+    for (var i = 0; i < input.length; i++) {
+      input[i].style.borderColor = " rgb(46, 6, 29)";
+    } // form.reset();
+
+
+    modal.style.display = "none";
+  } else modal.style.display = "none";
 } // if form field is empty border changes to blue and error counter is incremented
 
 
@@ -245,60 +268,25 @@ function clearTimer() {
   }
 }
 
-var canvas = new fabric.Canvas("myCanvas"); // document.getElementById("myCanvas");
+function erase(ranking) {
+  var indexOfAthlete = ranking - 1;
+  var tableBody = document.getElementById("tableData");
+  tableBody.innerHTML = ""; //clear table body
 
-canvas.width = window.innerWidth;
-canvas.height = 0.15 * canvas.width;
-var context = canvas.getContext("2d");
-context.fillStyle = "green";
-context.fillRect(0, 0, canvas.width, canvas.height);
-var drawColor = "black";
-var drawWidth = "5";
-var isDrawing = false;
-canvas.addEventListener("touchstart", start, false);
-canvas.addEventListener("touchmove", draw, false);
-canvas.addEventListener("mousedown", start, false);
-canvas.addEventListener("mousemove", draw, false);
-canvas.addEventListener("touchend", stop, false);
-canvas.addEventListener("mouseup", stop, false);
-canvas.addEventListener("mouseout", stop, false);
+  /* delete object at given index in array
+     update rank of items in array
+     update table based on new array
+  */
 
-function start(event) {
-  isDrawing = true;
-  context.beginPath();
-  context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-  event.preventDefault();
-}
+  competitors.splice(indexOfAthlete, 1);
 
-function draw(event) {
-  if (isDrawing) {
-    context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
-    context.strokeStyle = drawColor;
-    context.lineWidth = drawWidth;
-    context.lineCap = "round";
-    context.lineJoin = "round";
-    context.stroke();
+  if (competitors.length === 0) {
+    loadTableData(competitors);
+  } else {
+    competitors.sort(function (a, b) {
+      return b.finalScore() - a.finalScore();
+    });
+    rank();
+    loadTableData(competitors);
   }
-
-  event.preventDefault();
-}
-
-function stop(event) {
-  if (isDrawing) {
-    context.stroke();
-    context.closePath();
-    isDrawing = false;
-  }
-
-  event.preventDefault();
-}
-
-function changeColor(element) {
-  drawColor = element.style.background;
-}
-
-function clearCanvas() {
-  context.fillStyle = "green";
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillRect(0, 0, canvas.width, canvas.height);
 }
