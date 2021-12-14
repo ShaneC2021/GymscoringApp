@@ -6,7 +6,12 @@ body {
 }
 
 #button {
-  width: 30%;
+  width: 25%;
+}
+
+#choice {
+  font-weight: bold ;
+  
 }
 
 .modal {
@@ -15,17 +20,15 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   max-width: 35vh;
-
+  padding:1em;
   z-index: 2;
   display: none;
-  height: 30vh;
-  border-radius: 20px;
-  border: 2px solid rebeccapurple;
+  height: 10em;
+  border: 2px solid white;
   background-color: white;
   text-align: center;
   font-style: normal;
   font-weight: bold;
-  opacity: 0.75;
   animation: fadein 1.5s;
 }
 
@@ -36,7 +39,7 @@ body {
   z-index: 1;
   background-color: rgb(100, 84, 84);
   border-radius: 30px;
-  opacity: 0.8;
+  opacity: 0.9;
   animation: fadein 1.5s;
 }
 
@@ -83,6 +86,7 @@ body {
 .input {
   border-radius: 35px;
 }
+
 .content-table thead tr {
   background-color: #050e10;
   text-align: center;
@@ -132,6 +136,7 @@ input[type="text"] {
   border: 3px solid rgb(46, 6, 29);
 }
 
+
 #namebox {
   margin-top: 25px;
 }
@@ -158,18 +163,44 @@ i:hover {
   cursor: pointer;
   color: red;
 }
-
-.timer {
-  background-color: black;
-  border: 1px solid rgb(124, 97, 97);
-  color: white;
-  font-weight: bolder;
-  font-size: 2em;
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+.timer-case {
+  border-radius:20px;
+  width:200px;
+  height:200px;
+  background:linear-gradient(135deg,red,blue,green);
 }
 
+.white {
+  background-color:white;
+}
+.timer {
+  color: black;
+  font-weight: bolder;
+  font-size: 100%;
+  width: 20%;
+  height: 50px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.divider  {
+  background-color:white;
+  width:10%;
+  padding-top:10px;
+  padding-bottom:10px;
+
+}
+
+.stopwatch-btns:hover {
+  opacity:0.6;
+}
+.stopwatch-btns {
+  background-color:black;
+  color:white;
+  height:50px;
+  width: 50px;
+  border-radius:50%;
+
+}
 .circle {
   border-radius: 40%;
 }
@@ -179,23 +210,20 @@ i:hover {
 }
 
 .confirmation-modal {
+  padding: 1em;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   min-width:200px;
   max-width: 35vh;
-
+  color:white;
   z-index: 3;
   display: none;
-  height: 200px;
-  border-radius: 20px;
-  border: 2px solid rgb(86, 39, 133);
+  height: 10em;
+  border: 2px solid rgb(252, 6, 6);
   background-color: rgb(252, 6, 6);
   text-align: center;
-  font-style: normal;
+  text-transform: uppercase;
   font-weight: bold;
-  opacity: 0.7;
-  
-
 }

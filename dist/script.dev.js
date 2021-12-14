@@ -63,10 +63,10 @@ function numOfJudges() {
   for (var i = escores.length; i > judges; i--) {
     escores[i - 1].disabled = true;
     escores[i - 1].style.backgroundColor = "grey";
-  }
+  } //  modalOverlay.classList.toggle("closed");
+  // popupModal.classList.toggle("closed");
+  // synchronizes the fade out with the display being set to none
 
-  modalOverlay.classList.toggle("closed");
-  popupModal.classList.toggle("closed"); // synchronizes the fade out with the display being set to none
 
   setTimeout(function () {
     modalOverlay.style.display = "none";
@@ -172,13 +172,24 @@ function loadTableData(athletes) {
 
 
 function clearFields() {
+  var tableBody = document.getElementById("tableData");
   var modal = document.getElementById("confirmation");
+  var clearTableModal = document.getElementById("clearTableModal");
+
+  if (tableBody.innerHTML === "") {
+    clearTableModal.style.display = "block";
+    setTimeout(function () {
+      clearTableModal.style.display = "none";
+      choice.value = "";
+    }, 1500);
+    return 0;
+  }
+
   modal.style.display = "block";
   trapFocus(modal);
 }
 
 function reset() {
-  var form = document.getElementById("myForm");
   var tableBody = document.getElementById("tableData");
   var input = document.getElementsByTagName("input");
   competitors.length = 0;
@@ -190,24 +201,19 @@ function reset() {
 }
 
 function confirm() {
-  var form = document.getElementById("myForm");
   var tableBody = document.getElementById("tableData");
-  var input = document.getElementsByTagName("input");
   var modal = document.getElementById("confirmation");
   var choice = document.getElementById("choice");
   var selection = choice.options[choice.selectedIndex].value;
-
-  if (selection === "Yes") {
-    competitors.length = 0;
-    tableBody.innerHTML = ""; // resets input border color to neutral state
-
-    for (var i = 0; i < input.length; i++) {
-      input[i].style.borderColor = " rgb(46, 6, 29)";
-    } // form.reset();
-
-
+  if (selection === "Yes") setTimeout(function () {
     modal.style.display = "none";
-  } else modal.style.display = "none";
+    choice.value = "";
+    competitors.length = 0;
+    tableBody.innerHTML = "";
+  }, 750);else setTimeout(function () {
+    modal.style.display = "none";
+    choice.value = "";
+  }, 750);
 } // if form field is empty border changes to blue and error counter is incremented
 
 

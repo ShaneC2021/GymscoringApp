@@ -70,8 +70,8 @@ function numOfJudges() {
     escores[i - 1].style.backgroundColor = "grey";
   }
 
-  modalOverlay.classList.toggle("closed");
-  popupModal.classList.toggle("closed");
+  //  modalOverlay.classList.toggle("closed");
+  // popupModal.classList.toggle("closed");
 
   // synchronizes the fade out with the display being set to none
   setTimeout(function () {
@@ -177,13 +177,23 @@ function loadTableData(athletes) {
     empties array clears table contents
   */
 function clearFields() {
+  let tableBody = document.getElementById("tableData");
   let modal = document.getElementById("confirmation");
+  let clearTableModal = document.getElementById("clearTableModal");
+
+  if (tableBody.innerHTML === "") {
+    clearTableModal.style.display = "block";
+    setTimeout(function () {
+      clearTableModal.style.display = "none";
+      choice.value = "";
+    }, 1500);
+    return 0;
+  }
   modal.style.display = "block";
   trapFocus(modal);
 }
 
 function reset() {
-  let form = document.getElementById("myForm");
   let tableBody = document.getElementById("tableData");
   let input = document.getElementsByTagName("input");
 
@@ -198,24 +208,23 @@ function reset() {
 }
 
 function confirm() {
-  let form = document.getElementById("myForm");
   let tableBody = document.getElementById("tableData");
-  let input = document.getElementsByTagName("input");
   let modal = document.getElementById("confirmation");
   let choice = document.getElementById("choice");
   let selection = choice.options[choice.selectedIndex].value;
 
-  if (selection === "Yes") {
-    competitors.length = 0;
-    tableBody.innerHTML = "";
-
-    // resets input border color to neutral state
-    for (let i = 0; i < input.length; i++) {
-      input[i].style.borderColor = " rgb(46, 6, 29)";
-    }
-    // form.reset();
-    modal.style.display = "none";
-  } else modal.style.display = "none";
+  if (selection === "Yes")
+    setTimeout(function () {
+      modal.style.display = "none";
+      choice.value = "";
+      competitors.length = 0;
+      tableBody.innerHTML = "";
+    }, 750);
+  else
+    setTimeout(function () {
+      modal.style.display = "none";
+      choice.value = "";
+    }, 750);
 }
 
 // if form field is empty border changes to blue and error counter is incremented
@@ -238,9 +247,10 @@ function rank() {
 
 //added  stopWatch    I know more global variables probably a better way to do this
 let stopTime = true;
-let milicounter = 0;
+let splitCounter = 0;
 let secondsCounter = 0;
 let minuteCounter = 0;
+let split = document.getElementById("splitSecond");
 let seconds = document.getElementById("seconds");
 let minutes = document.getElementById("minutes");
 let myTimer;
@@ -249,11 +259,20 @@ function begin() {
   if (stopTime === true) {
     stopTime = false;
     myTimer = setInterval(function () {
-      milicounter += 1;
-      secondsCounter += 1;
+      splitCounter += 1;
+
+      if (splitCounter < 10) {
+        split.innerText = `0${splitCounter}`;
+      } else split.innerText = splitCounter;
+
+      if (splitCounter === 100) {
+        splitCounter = 0;
+        split.innerText = `0${splitCounter}`;
+        secondsCounter += 1;
+      }
 
       if (secondsCounter < 10) seconds.innerText = `0${secondsCounter}`;
-      else document.getElementById("seconds").innerText = secondsCounter;
+      else seconds.innerText = secondsCounter;
 
       if (secondsCounter === 60) {
         secondsCounter = 0;
@@ -261,17 +280,15 @@ function begin() {
         seconds.innerText = `0${secondsCounter}`;
       }
 
-      if (minuteCounter < 10)
-        document.getElementById("minutes").innerText = `0${minuteCounter}`;
-      else document.getElementById("minutes").innerText = minuteCounter;
-    }, 1000);
+      if (minuteCounter < 10) minutes.innerText = `0${minuteCounter}`;
+      else minutes.innerText = minuteCounter;
+    }, 10);
   }
 }
 
 function stopTimer() {
   if (stopTime === false) {
     stopTime = true;
-
     clearInterval(myTimer);
   }
 }
@@ -280,13 +297,17 @@ function clearTimer() {
   if (stopTime === true) {
     secondsCounter = 0;
     minuteCounter = 0;
+    splitCounter = 0;
+    split.innerText = "00";
     seconds.innerText = "00";
+    minutes.innerText = "00";
   }
 }
 
 function erase(ranking) {
   let indexOfAthlete = ranking - 1;
   let tableBody = document.getElementById("tableData");
+
   tableBody.innerHTML = ""; //clear table body
 
   /* delete object at given index in array
@@ -300,7 +321,6 @@ function erase(ranking) {
   } else {
     competitors.sort((a, b) => b.finalScore() - a.finalScore());
     rank();
-
     loadTableData(competitors);
   }
 }
