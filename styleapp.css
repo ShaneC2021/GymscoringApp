@@ -45,7 +45,6 @@ body {
 
 .desk {
   /* background-image: url(images/desk.png);*/
-  border-radius: 2em;
   height: 100vh;
 }
 
@@ -71,10 +70,6 @@ body {
   }
 }
 
-.layout {
-  height: 30vh;
-}
-
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -84,7 +79,7 @@ body {
   overflow: hidden;
 }
 .input {
-  border-radius: 35px;
+  border-radius: 20px;
 }
 
 .content-table thead tr {
@@ -138,7 +133,7 @@ input[type="text"] {
 
 
 #namebox {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .table-bg {
@@ -147,9 +142,11 @@ input[type="text"] {
   border-radius: 2rem;
 }
 
+.layout {
+  height:32vh;
+}
 .tabulator-color {
   background-color: rgb(46, 6, 29);
-  height: 40vh;
 }
 .fa-rotate-135 {
   -webkit-transform: rotate(90deg);
