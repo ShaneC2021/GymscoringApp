@@ -5,11 +5,8 @@ body {
   box-sizing: border-box;
 }
 
-
-
 #choice {
-  font-weight: bold ;
-  
+  font-weight: bold;
 }
 
 .modal {
@@ -18,7 +15,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   max-width: 35vh;
-  padding:1em;
+  padding: 1em;
   z-index: 2;
   display: none;
   height: 10em;
@@ -87,7 +84,6 @@ body {
   font-weight: bold;
 }
 
-
 .content-table th,
 .content-table td {
   padding: 2px;
@@ -130,7 +126,6 @@ input[type="text"] {
   border: 3px solid rgb(46, 6, 29);
 }
 
-
 #namebox {
   margin-top: 15px;
 }
@@ -156,19 +151,20 @@ input[type="text"] {
   transform: rotate(90deg);
 }
 
-i:hover ,.delete:hover {
+i:hover,
+.delete:hover {
   cursor: pointer;
   color: red;
 }
 .timer-case {
-  border-radius:20px;
-  width:200px;
-  height:200px;
-  background:linear-gradient(135deg,red,blue,green);
+  border-radius: 20px;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, red, blue, green);
 }
 
 .white {
-  background-color:white;
+  background-color: white;
 }
 .timer {
   color: black;
@@ -176,27 +172,25 @@ i:hover ,.delete:hover {
   font-size: 100%;
   width: 20%;
   height: 50px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-.divider  {
-  background-color:white;
-  width:10%;
-  padding-top:10px;
-  padding-bottom:10px;
-
+.divider {
+  background-color: white;
+  width: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .stopwatch-btns:hover {
-  opacity:0.6;
+  opacity: 0.6;
 }
 .stopwatch-btns {
-  background-color:black;
-  color:white;
-  height:50px;
+  background-color: black;
+  color: white;
+  height: 50px;
   width: 50px;
-  border-radius:50%;
-
+  border-radius: 50%;
 }
 .circle {
   border-radius: 40%;
@@ -215,9 +209,9 @@ i:hover ,.delete:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width:200px;
+  min-width: 200px;
   max-width: 35vh;
-  color:white;
+  color: white;
   z-index: 3;
   display: none;
   height: 10em;
@@ -227,4 +221,3 @@ i:hover ,.delete:hover {
   text-transform: uppercase;
   font-weight: bold;
 }
-
