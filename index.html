@@ -151,12 +151,14 @@
         </div>
       </div>
     </div>
-    <div class="row m-2 p-2">
+    <div class="row m-0 p-2">
 
       <div id="table-container" class="table-bg col-lg-12 col-md-12 col-sm-12 col-xs-12 p-1 m-0 text-center"
         style="overflow-x: auto">
+        
+        
 
-        <table id="mytable" class="content-table table table-bordered table-sm " width="95%">
+        <table id="mytable" class="content-table table table-bordered table-sm " width="90%">
           <thead>
             <tr>
               <th>Name</th>
@@ -166,14 +168,16 @@
               <th>Penalty</th>
               <th>Score</th>
               <th>#</th>
-              <th>Delete</th>
+              <th class="delete" onclick="clearFields()"><i class="fas fa-eraser fa-1x fa-rotate-90"></i>
+              Delete 
+              </th>
             </tr>
           </thead>
           <tbody id="tableData"></tbody>
         </table>
-        <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearFields()" tabindex="13">
+      <!--- <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearFields()" tabindex="13">
           <i class="fas fa-eraser fa-1x fa-rotate-90"></i> Clear Table
-        </button>
+        </button>-->
       </div>
     </div>
 

@@ -5,9 +5,7 @@ body {
   box-sizing: border-box;
 }
 
-#button {
-  width: 25%;
-}
+
 
 #choice {
   font-weight: bold ;
@@ -89,9 +87,10 @@ body {
   font-weight: bold;
 }
 
+
 .content-table th,
 .content-table td {
-  padding: 3px;
+  padding: 2px;
 }
 
 .content-table tbody tr {
@@ -157,7 +156,7 @@ input[type="text"] {
   transform: rotate(90deg);
 }
 
-i:hover {
+i:hover ,.delete:hover {
   cursor: pointer;
   color: red;
 }
@@ -228,3 +227,4 @@ i:hover {
   text-transform: uppercase;
   font-weight: bold;
 }
+
