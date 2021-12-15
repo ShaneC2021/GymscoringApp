@@ -22,4 +22,4 @@ As current gymnastics coach, former gymnast and former National judge in the spo
 The application while functional is still in ongoing development
 
 ### Demo  Site
-[Click here] https://shanec2021.github.io/GymscoringApp/
+Click on the link https://shanec2021.github.io/GymscoringApp/
