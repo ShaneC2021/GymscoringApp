@@ -207,6 +207,9 @@ i:hover {
   width: 100%;
 }
 
+.filler {
+  height: 31px;
+}
 .confirmation-modal {
   padding: 1em;
   position: fixed;
