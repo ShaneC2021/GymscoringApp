@@ -70,9 +70,6 @@ function numOfJudges() {
     escores[i - 1].style.backgroundColor = "grey";
   }
 
-  //  modalOverlay.classList.toggle("closed");
-  // popupModal.classList.toggle("closed");
-
   // synchronizes the fade out with the display being set to none
   setTimeout(function () {
     modalOverlay.style.display = "none";
@@ -81,6 +78,7 @@ function numOfJudges() {
 }
 
 function eScore() {
+  let difficulty = parseFloat(document.getElementById("Dscore").value);
   let averageDeductions = 0;
   let escores = document.getElementsByClassName("execution");
   let executionScore = 0;
@@ -95,7 +93,13 @@ function eScore() {
   }
 
   averageDeductions = parseFloat(total / judges);
-  executionScore = 10 - averageDeductions;
+  executionScore = parseFloat(10 - averageDeductions);
+
+  // ensures gymnast with no difficulty receives a 0 on execution as well
+  if (difficulty === 0) {
+    executionScore = 0;
+  }
+
   return executionScore;
 }
 
@@ -134,7 +138,17 @@ function addCompetitors() {
       let bonusScore = this.bonus;
       let execution = this.executionScore;
       let penaltyScore = this.penalty;
-      let finalScore = difficulty + execution + bonusScore - penaltyScore;
+      let finalScore;
+
+      //prevents returning a negative score
+      if (difficulty === 0) {
+        finalScore = 0;
+      } else finalScore = difficulty + execution + bonusScore - penaltyScore;
+
+      // prevents returning a negative score
+      if (finalScore <= 0) {
+        finalScore = 0;
+      }
       return finalScore.toFixed(3);
     },
   };
@@ -146,7 +160,14 @@ function addCompetitors() {
   */
   competitors.push(competitor);
   document.getElementById("myForm").reset();
-  competitors.sort((a, b) => b.finalScore() - a.finalScore());
+  competitors.sort((a, b) => {
+    // if final scores are equal the higher rank is decided based off execution score
+    if (b.finalScore() === a.finalScore())
+      return b.executionScore - a.executionScore;
+
+    return b.finalScore() - a.finalScore();
+  });
+
   rank();
   loadTableData(competitors);
 }
@@ -239,13 +260,28 @@ function errorCheck(string) {
 }
 
 // ranks competitors using their index in the array after it has been sorted
+   
 function rank() {
   for (let i = 0; i < competitors.length; i++) {
     competitors[i].rank = competitors.indexOf(competitors[i]) + 1;
   }
+
+  if (competitors.length >= 2) {
+    for (let i = 1; i < competitors.length; i++) {
+      // updates the rankings based on if there are ties
+      // tie is broken by higher Escore 
+
+      if (
+        competitors[i].finalScore() === competitors[i - 1].finalScore() &&
+        competitors[i].executionScore === competitors[i - 1].executionScore
+      ) {
+        competitors[i].rank = competitors[i - 1].rank;
+      }
+    }
+  }
 }
 
-//added  stopWatch    I know more global variables probably a better way to do this
+//added stopWatch I know more global variables probably a better way to do this
 let stopTime = true;
 let splitCounter = 0;
 let secondsCounter = 0;
@@ -319,7 +355,14 @@ function erase(ranking) {
   if (competitors.length === 0) {
     loadTableData(competitors);
   } else {
-    competitors.sort((a, b) => b.finalScore() - a.finalScore());
+   // competitors.sort((a, b) => b.finalScore() - a.finalScore());
+   competitors.sort((a, b) => {
+    // if final scores are equal the higher rank is decided based off execution score
+    if (b.finalScore() === a.finalScore())
+      return b.executionScore - a.executionScore;
+
+    return b.finalScore() - a.finalScore();
+  });
     rank();
     loadTableData(competitors);
   }
